@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter InAppWebView Example</title>
+  <script>
+    // JavaScript function to send event to Flutter
+    function sendEventToFlutter() {
+      if (window.flutter_inappwebview) {
+        window.flutter_inappwebview.callHandler('buttonClicked', { message: 'Button was clicked!' })
+          .then(function(response) {
+            console.log('Response from Flutter:', response);
+          })
+          .catch(function(error) {
+            console.error('Error sending event to Flutter:', error);
+          });
+      } else {
+        console.warn('window.flutter_inappwebview is not available');
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Flutter InAppWebView Example</h1>
+  <button onclick="sendEventToFlutter()">Send Event to Flutter</button>
+</body>
+</html>
